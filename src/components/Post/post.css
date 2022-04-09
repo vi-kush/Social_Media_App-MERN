@@ -1,0 +1,112 @@
+.post_card{
+    margin: 10px 0px;
+}
+
+.post_card div .title{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 23px;
+
+}
+
+.post_card div.content .title{
+    
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 30px;
+
+}
+
+.post_card div.content .title img{
+    margin-left: 10px;
+}
+
+.post_card div.content p{
+
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    height: 25px;
+    text-align: left;
+    color: #5C5C5C;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.timeStamp{
+    display: flex;
+    width: 60%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.date, .time{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-transform: uppercase;
+}
+
+.postbtn{
+    width: 100%;
+    background: #FFFFFF;
+    border: 0.7px solid #A9AEB8;
+    margin: 10px 0 20px;
+    transition: background 0.5s;
+}
+
+.postbtn:hover{
+    border: 0.7px solid #9aa2b3;
+    background: #0000001c;
+}
+
+.postbtn.Meetup{
+    color: #E56135;
+}
+
+.postbtn.Job{
+    color: #02B875;
+}
+
+.footer{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;  
+}
+
+.footer .userDetail{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.footer .postDetail{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.footer .postDetail .view{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer .postDetail .share{
+    height: 36px;
+    width: 42px;
+    border-radius: 2px;
+    background: #EDEEF0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

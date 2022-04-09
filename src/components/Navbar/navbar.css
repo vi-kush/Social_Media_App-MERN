@@ -1,0 +1,102 @@
+.navbar{
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* position: fixed; */
+    width: 100%;
+    height: 72px;
+    background: #fff;
+    min-width: 400px;
+    z-index: 1;
+}
+
+.navbar .logo{
+
+    height: 24px;
+    width: 162px;
+    margin-left: 50px;
+}
+
+.navbar .search{
+    height: 42px;
+    width: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 21px;
+    background-color: #f2f2f2;
+}
+
+.navbar .search .icon{
+
+    margin: 0 20px;
+}
+
+.navbar .search input{
+    outline: none;
+    border: none;
+    width: 242px;
+    height: 19px;
+    background-color: #f2f2f2;
+    color: #5C5C5C;
+
+}
+
+.navbar .menu{
+    display: flex;
+    margin-right: 50px;
+}
+
+.navbar .menu .menuItem{
+    display: flex;
+    align-items: center;
+    height: 21px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #2E2E2E;
+    cursor: pointer;
+}
+
+.navbar .menu span{
+    color: #2F6CE5;
+    font-weight: 700;
+}
+
+.navbar .menu img{
+    
+    height: 36px; 
+    width: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.navbar .menu .menuItem .userName{
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 10px;
+    color: #5C5C5C;
+}
+
+@media only screen and (max-width: 900px){
+    .navbar .search{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .navbar .menu{
+        margin-right: 10px;
+        height: 15px;
+        font-size: 12px;
+    }
+
+    .navbar .logo{
+        margin-left: 10px;
+    }
+    .navbar .logo img{
+        height: 18px;
+        width: 102px;
+    }
+}
