@@ -110,3 +110,17 @@ div.timeStamp{
     align-items: center;
     justify-content: center;
 }
+
+.dropDown.btn{
+
+    background: #fff !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropDown.btn:focus{
+    box-shadow: none !important;
+    background: #fff;
+}

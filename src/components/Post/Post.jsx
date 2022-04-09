@@ -23,11 +23,9 @@ const Post= ({postData})=>{
                         <h2 className="title">
                             {post.postTitle}
                             <Dropdown>
-                                <Dropdown.Toggle className="dropDown invisible" id={`dropdown-post_menu_${idx}`} style={{width:0,height:0,overflow:"hidden"}}>
-                                </Dropdown.Toggle>
-                                <label htmlFor={`dropdown-post_menu_${idx}`} style={{cursor:"pointer",position:"relative",top:"-25px"}}>
+                                <Dropdown.Toggle className="dropDown btn" id={`dropdown-post_menu_${idx}`}>
                                     <img src="images/dots.png" alt="" />
-                                </label>
+                                </Dropdown.Toggle>
                                 <Dropdown.Menu >
                                     <Dropdown.Item >Edit</Dropdown.Item>
                                     <Dropdown.Item >Report</Dropdown.Item>
