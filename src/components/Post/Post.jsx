@@ -1,11 +1,12 @@
 import "./post.css"
 import {Card, Button, Dropdown} from 'react-bootstrap'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 
 
 const Post= ({postData})=>{
-
+    
+    const postCategories = {1:"✍️ Article",2:"🔬️ Education",3:"🗓️ Meetup",4:"💼️ Job"};
+    
     return (
         <div className="post">
         {
@@ -17,11 +18,12 @@ const Post= ({postData})=>{
                 }
                 <Card.Body>
                     <div className="title">
-                        {post.postIcon} {post.postCategory}
+                        {postCategories[post.postCategory]}
                     </div>
                     <div className="content">
                         <h2 className="title">
                             {post.postTitle}
+                            
                             <Dropdown>
                                 <Dropdown.Toggle className="dropDown btn" id={`dropdown-post_menu_${idx}`}>
                                     <img src="images/dots.png" alt="" />
@@ -34,21 +36,38 @@ const Post= ({postData})=>{
                             </Dropdown>
                         </h2>
                         {
-                            post.postContent && <p>{post.postContent}</p>
+                            ( post.postCategory !== "4" && post.postContent && <p>{post.postContent}</p>)    
                         }
                     </div>
-                    {
-                        post.date ? (
-                            <div className="timeStamp">
+                    <div className="timeStamp">
+                        {
+                            (post.date ) ? (
                                 <span className="date">
-                                   <CalendarMonthIcon /> {post.date}
-                                </span>  
-                                <span className="time">
-                                   <LocationOnOutlinedIcon /> {post.time}
-                                </span>
-                            </div>
+                                    <img src="images/meetupDateIcon.png" alt="" /> {post.date}
+                                </span>          
                             ) : ''
-                    }
+                        }
+                        {
+                            post.postCategory === "4" ? 
+                            <div className="jobIcon">
+                                {
+                                    post.postContent && 
+                                        <span>
+                                            <img src="images/jobIcon.png" alt="" />
+                                            {post.postContent}
+                                        </span> 
+                                }
+                            </div> : ""
+                        }
+                        {
+                            (post.location) ? (
+                                <span className="time">
+                                    <LocationOnOutlinedIcon /> {post.location}
+                                </span> 
+                            ) : ""
+                        }
+                        <div></div>    
+                    </div>
                     {
                         (post.postCategory === 'Meetup' || post.postCategory === 'Job') 
                         &&

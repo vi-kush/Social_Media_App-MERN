@@ -1,8 +1,7 @@
 const postData = [
     {
         postCover: "post1.png",
-        postIcon: "✍️",
-        postCategory: "Article",
+        postCategory: "1",
         postTitle: "What if famous brands had regular fonts? Meet RegulaBrands!",
         postContent: " I’ve worked in UX for the better part of a decade. From now on, I plan to retrieve bla bla bla.",
         postUrl:"",
@@ -12,8 +11,7 @@ const postData = [
     },
     {
         postCover: "post2.png",
-        postIcon: "🔬️",
-        postCategory: "Education",
+        postCategory: "2",
         postTitle: "Tax Benefits for Investment under National Pension Scheme launched by Government",
         postContent: " I’ve worked in UX for the better part of a decade. From now on, I plan to retrieve bla bla bla.",
         postUrl:"",
@@ -23,12 +21,11 @@ const postData = [
     },
     {
         postCover: "post3.png",
-        postIcon: "🗓️",
-        postCategory: "Meetup",
+        postCategory: "3",
         postTitle: "What if famous brands had regular fonts? Meet RegulaBrands!",
         postContent: " I’ve worked in UX for the better part of a decade. From now on, I plan to retrieve bla bla bla.",
-        date: "today",
-        time: "8 am",
+        date: "Fri, 12 Oct, 2018",
+        location: "Ahmedabad, India",
         postUrl:"",
         redirectUrl: "",
         userImg: "",
@@ -36,10 +33,10 @@ const postData = [
     },
     {
         postCover: "",
-        postIcon:"💼️",
-        postCategory: "Job",
+        postCategory: "4",
         postTitle: "Software Developer",
         postContent: " Innovaccer Analytics Private Ltd.",
+        location: "Noida, India",
         postUrl:"",
         redirectUrl: "",
         userImg: "",
