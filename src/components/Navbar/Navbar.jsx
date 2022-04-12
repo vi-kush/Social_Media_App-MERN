@@ -2,9 +2,11 @@ import "./navbar.css"
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useState } from "react";
+import Register from "../Register/Register";
 
 const Navigation= ()=>{
 
+    const [modalShow, setModalShow] = useState(false);
     const [loggedIn,setLoggedIn] = useState(false);
 
     return (
@@ -27,13 +29,18 @@ const Navigation= ()=>{
                         </div>
                     )
                     :
-                    (<div className="menuItem" onClick={()=>{setLoggedIn(true)}}>
+                    (<div className="menuItem" onClick={() => setModalShow(true)} >
+                        {/*onClick={()=>{setLoggedIn(true)}}*/}
                         Create account. <span>It's free</span>
                     </div>
                     )
                 }
                 <ArrowDropDownIcon/>
             </div>
+            <Register
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
         </div>
     )
 }

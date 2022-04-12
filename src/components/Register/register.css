@@ -1,0 +1,146 @@
+.modal-header .btn-close{
+    top: -60px;
+    position: relative;
+    left: 25px;
+    background-image: url('./closeIcon.png') !important;
+    /* background: #fff; */
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+}
+
+.modal-header .btn-close:focus{
+
+    box-shadow: none !important;
+}
+
+.modal-header{
+
+    border-bottom: none;
+    background: #EFFFF4;
+    height: 50px;
+}
+
+.modal-header .title{
+    text-align:center;
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    width: 100%;
+    color: #008A45;
+}
+
+.modal-body .headTitle{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 31px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 55px;
+    margin: 0 45px;
+}
+
+.modal-body .headTitle div{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 17px;
+    color: #000;
+}
+
+.modal-body .headTitle span{
+    color: #2F6CE5;
+    padding: 5px 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-body .formSection{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 992px){
+    .modal-body .headTitle{
+        margin: 0 20px;
+    }
+    
+    .modal-body .formSection{
+        flex-direction: column;
+    }
+}
+
+.register_right{
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+}
+
+.register_right span{
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: right;
+    letter-spacing: -0.008em;
+    color: #000000;
+    opacity: 0.6;
+    margin-top: 10px;
+}
+
+.form{
+    height: 100%;
+    max-width: 340px;
+    margin: auto;
+}
+
+.form .fieldContainer{
+    border-bottom: 1px solid #D9D9DB;
+}
+
+.input{
+    border-radius: 0px;
+    border-bottom: none;
+    background-color: #F7F8FA;
+    color: #8A8A8A;
+    height: 46px;
+}
+
+
+.input:focus{
+    box-shadow: none;
+    border: 1px solid #D9D9DB;
+    border-bottom: none;
+    background-color: #F7F8FA;
+}
+
+.form button.register_btn{
+    width: 100%;
+    background: #2F6CE5;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 20px;
+    height: 38px;
+    margin-bottom: 10px;
+}
+
+.form button.social_media_btn{
+    background: #FFFFFF;
+    border: 0.6px solid #D9D9DB;
+    box-sizing: border-box;
+    border-radius: 2px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    color: #000;
+    font-weight: 400;
+}
+
+.form button.social_media_btn img{
+    padding: 0 10px;
+}

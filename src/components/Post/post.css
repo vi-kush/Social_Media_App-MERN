@@ -30,6 +30,12 @@
     margin-left: 10px;
 }
 
+.post_card div.content .title a{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
 .post_card div.content p{
 
     font-size: 18px;
