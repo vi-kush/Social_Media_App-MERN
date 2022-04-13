@@ -129,8 +129,8 @@ exports.likePost = async(req,res,next) => {
             }
         }
         else{
-            const res = await Like.create({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
-            if(res)  
+            const result = await Like.create({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
+            if(result)  
                 return res.status(200).json({
                     success : true,
                     liked : true,
