@@ -60,7 +60,7 @@ exports.forgetPassword = async(req,res,next) => {
         const token = await user.getResetPasswordHash();
         await user.save()
 
-        const resetURL = `${ req.protocol}://${req.get('host')}/api/auth/reset-password/${token}`;
+        const resetURL = `${ req.protocol}://${req.get('host')}/api/auth/resetpassword/${token}`;
 
         const message = `
             <h3> Password reset request</h3>
