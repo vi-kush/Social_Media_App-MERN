@@ -120,8 +120,8 @@ exports.likePost = async(req,res,next) => {
                     liked : true,
                 })
             else {
-                const res = await Like.findOneAndDelete({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
-                if(res)    
+                const result = await Like.findOneAndDelete({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
+                if(result)    
                     return res.status(200).json({
                         success : true,
                         liked : false,
