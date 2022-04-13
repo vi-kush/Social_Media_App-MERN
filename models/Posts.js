@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-// const {ObjectId} = require('mongoose.Types')
+
 
 const PostSchema = mongoose.Schema({
     postCategory: {
@@ -33,7 +33,7 @@ const PostSchema = mongoose.Schema({
     user: {
         type: mongoose.Types.ObjectId,
         required: false,
-        ref: 'Users',
+        ref: 'User',
         validate: {
             isAsync: true,
             validator: function(value) {
@@ -63,5 +63,16 @@ const PostSchema = mongoose.Schema({
 //     });
 // });
 
+PostSchema.methods.getLikes = async function(){
+    var Like = mongoose.model('Like');
+    const like = await Like.find({post : mongoose.Types.ObjectId(this._id)},{_id:0,post:0})
+    return like
+}
+
+PostSchema.methods.getComments = async function(){
+    var Comments = mongoose.model('Comment');
+    const comment = await Comments.find({post : mongoose.Types.ObjectId(this._id)},{_id:0,post:0})
+    return comment
+}
 
 module.exports = mongoose.model("Post",PostSchema)
