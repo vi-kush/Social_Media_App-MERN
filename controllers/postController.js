@@ -1,5 +1,3 @@
-const Like = require('./../models/Likes')
-const Comment = require('./../models/Comments')
 const Post = require("../models/Posts")
 const ErrorResponse = require('../utils/ErrorResponse');
 const mongoose = require('mongoose')
@@ -81,9 +79,7 @@ exports.getPost = async(req,res,next) => {
         
         if(!post) return next(new ErrorResponse("Invalid Post Id"))
             
-        let likes = await post.getLikes();
-        let comments = await post.getComments();
-        return res.status(200).json({...post._doc, postCover: post.postCover, likes, comments})
+        return res.status(200).json({...post._doc, postCover: post.postCover})
     }catch(error){
         return next(error)
     }
@@ -94,49 +90,102 @@ exports.addComment = async(req,res,next) => {
     const {userId, comment} = req.body
     
     try{
-        const userComment = await Comment.create({comment, user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
+        const post = await Post.findById(postId)
 
-        return res.status(200).json({
-            success : true,
-            comment : userComment
-        })
+        if(post){
+            let success = await post.comment.create({comment, user: mongoose.Types.ObjectId(userId)})
+            post.comment.push(success)
+            success = await post.save();  
+            if(success)
+                return res.status(200).json({
+                    success: true
+                })
+            else return next(new ErrorResponse("Error in adding comment",404))
+        }else return next(new ErrorResponse("invalid post_id",404))
     }catch(error){
         return next(new ErrorResponse(error,404))
     }
 
 }
 
-exports.likePost = async(req,res,next) => {
+exports.removeComment = async(req,res,next) => {
+    const postId = req.params.Id
+
+    try{
+        
+    }catch(error) {
+        return next(error)
+    }
+}
+
+exports.likePost = (req,res,next) => {
     const postId = req.params.postId
     const {userId , undo=false}  = req.body
 
     try{
-        const liked = await Like.findOne({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
-        
-        if(liked){
-            if(!undo) 
-                return res.status(200).json({
-                    success : true,
-                    liked : true,
-                })
-            else {
-                const result = await Like.findOneAndDelete({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
-                if(result)    
-                    return res.status(200).json({
-                        success : true,
-                        liked : false,
-                    })
+        const result = Post.findOne({_id : postId , "like.user": userId },async function(err,doc){
+            if(err) return next(err);
+            if(doc) {
+                if(undo){
+                    doc.like = doc.like.filter(({user}) => (user != userId))
+                    const stat = await doc.save()
+                    if(stat) return res.status(200).json({success: true, liked: false , doc})
+                }
+                return res.status(200).json({liked: true ,doc})
+            }else{
+                const docu = await Post.findOne({_id : postId})
+                if(docu){
+                    try{
+                        const stat = await docu.like.create({user: userId})
+                        docu.like.push(stat);
+                        docu.save(function(err,result){
+                            if(err) return next(err);
+                            if(result) return res.status(200).json({liked: true});
+                        });   
+                    }catch(error){
+                        return next(error)
+                    }
+                }
+                else return next(new ErrorResponse("some Error occured",404))
             }
-        }
-        else{
-            const result = await Like.create({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
-            if(result)  
-                return res.status(200).json({
-                    success : true,
-                    liked : true,
-                })
-        }
+        });
     }catch(error){
-        next(error)
+        return next(error)
     }
 }
+
+
+// exports.likePost = async(req,res,next) => {
+//     const postId = req.params.postId
+//     const {userId , undo=false}  = req.body
+
+//     try{
+//         // const liked = await Like.findOne({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
+        
+//         // if(liked){
+//         //     if(!undo) 
+//         //         return res.status(200).json({
+//         //             success : true,
+//         //             liked : true,
+//         //         })
+//         //     else {
+//         //         const result = await Like.findOneAndDelete({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
+//         //         if(result)    
+//         //             return res.status(200).json({
+//         //                 success : true,
+//         //                 liked : false,
+//         //             })
+//         //     }
+//         // }
+//         // else{
+//         //     const result = await Like.create({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
+//         //     if(result)  
+//         //         return res.status(200).json({
+//         //             success : true,
+//         //             liked : true,
+//         //         })
+//         // }
+//     }catch(error){
+//          return next(error)
+//     }
+// }

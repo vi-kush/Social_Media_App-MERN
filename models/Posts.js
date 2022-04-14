@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-
+const LikeSchema = require('./../models/Likes')
+const CommentSchema = require('./../models/Comments')
 
 const PostSchema = mongoose.Schema({
     postCategory: {
@@ -53,6 +54,9 @@ const PostSchema = mongoose.Schema({
             message: `User doesn't exist`
         }
     },
+    like: [LikeSchema],
+    comment: [CommentSchema],
+    
 },{timestamps:true})
 
 // PostSchema.pre('save', function (next, req) {
@@ -63,16 +67,16 @@ const PostSchema = mongoose.Schema({
 //     });
 // });
 
-PostSchema.methods.getLikes = async function(){
-    var Like = mongoose.model('Like');
-    const like = await Like.find({post : mongoose.Types.ObjectId(this._id)},{_id:0,post:0})
-    return like
-}
+// PostSchema.methods.getLikes = async function(){
+//     var Like = mongoose.model('Like');
+//     const like = await Like.find({post : mongoose.Types.ObjectId(this._id)},{_id:0,post:0})
+//     return like
+// }
 
-PostSchema.methods.getComments = async function(){
-    var Comments = mongoose.model('Comment');
-    const comment = await Comments.find({post : mongoose.Types.ObjectId(this._id)},{_id:0,post:0})
-    return comment
-}
+// PostSchema.methods.getComments = async function(){
+//     var Comments = mongoose.model('Comment');
+//     const comment = await Comments.find({post : mongoose.Types.ObjectId(this._id)},{_id:0,post:0})
+//     return comment
+// }
 
 module.exports = mongoose.model("Post",PostSchema)

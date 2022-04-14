@@ -5,6 +5,8 @@ const ErrorResponse = require('../utils/ErrorResponse');
 exports.authorized = async(req,res,next) => {
     let token;
 
+    if(process.env.DEV_MODE) return next();
+
     if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
         token = req.headers.authorization.split(" ")[1];
     }
