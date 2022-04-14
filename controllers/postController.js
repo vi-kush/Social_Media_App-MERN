@@ -52,6 +52,12 @@ exports.updatePost = async(req,res,next) => {
             
 }
 
+/**
+ * 
+ * @param {postId: String} _id of post
+ * @returns {success: Boolean, post: Object}
+ */
+
 exports.removePost = async(req,res,next) => {
     const id = req.params.postId
 
@@ -69,6 +75,12 @@ exports.removePost = async(req,res,next) => {
             
 }
 
+/**
+ * 
+ * @param {postId: String} _id of post
+ * @returns {post: Object}
+ */
+
 exports.getPost = async(req,res,next) => {
     const id = req.params.postId
 
@@ -84,6 +96,14 @@ exports.getPost = async(req,res,next) => {
         return next(error)
     }
 }
+
+/**
+ * 
+ * @param {postId: String} _id of post
+ * @param {userId: String} _id of user
+ * @param {comment: String} user comment
+ * @returns {success: Boolean}
+ */
 
 exports.addComment = async(req,res,next) => {
     const postId = req.params.postId
@@ -118,6 +138,14 @@ exports.removeComment = async(req,res,next) => {
     }
 }
 
+/**
+ * 
+ * @param {postId : String} -> _id of post 
+ * @param {userId : String} -> _id of user
+ * @param {undo : Boolean} -> true : unlike post
+ * @returns { success: Boolean , like: Boolean} 
+ */
+
 exports.likePost = (req,res,next) => {
     const postId = req.params.postId
     const {userId , undo=false}  = req.body
@@ -140,7 +168,7 @@ exports.likePost = (req,res,next) => {
                         doc.like.push(stat);
                         doc.save(function(err,result){
                             if(err) return next(err);
-                            if(result) return res.status(200).json({liked: true});
+                            if(result) return res.status(200).json({success: true , liked: true});
                         });   
                     }catch(error){
                         return next(error)
