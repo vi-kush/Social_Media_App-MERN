@@ -123,22 +123,22 @@ exports.likePost = (req,res,next) => {
     const {userId , undo=false}  = req.body
 
     try{
-        const result = Post.findOne({_id : postId , "like.user": userId },async function(err,doc){
+        const result = Post.findById(postId,async function(err,doc){
             if(err) return next(err);
             if(doc) {
-                if(undo){
-                    doc.like = doc.like.filter(({user}) => (user != userId))
-                    const stat = await doc.save()
-                    if(stat) return res.status(200).json({success: true, liked: false , doc})
-                }
-                return res.status(200).json({liked: true ,doc})
-            }else{
-                const docu = await Post.findOne({_id : postId})
-                if(docu){
+                const likeDoc = doc.like.filter(({user}) => (user == userId))
+                if(likeDoc.length !== 0){
+                    if(undo){
+                        doc.like = doc.like.filter(({user}) => (user != userId))
+                        const stat = await doc.save()
+                        if(stat) return res.status(200).json({success: true, liked: false})
+                    }
+                    return res.status(200).json({liked: true })
+                }else{
                     try{
-                        const stat = await docu.like.create({user: userId})
-                        docu.like.push(stat);
-                        docu.save(function(err,result){
+                        const stat = await doc.like.create({user: userId})
+                        doc.like.push(stat);
+                        doc.save(function(err,result){
                             if(err) return next(err);
                             if(result) return res.status(200).json({liked: true});
                         });   
@@ -146,7 +146,8 @@ exports.likePost = (req,res,next) => {
                         return next(error)
                     }
                 }
-                else return next(new ErrorResponse("some Error occured",404))
+            }else{
+                return next(new ErrorResponse("invalid Post Id",400));
             }
         });
     }catch(error){
@@ -155,37 +156,3 @@ exports.likePost = (req,res,next) => {
 }
 
 
-// exports.likePost = async(req,res,next) => {
-//     const postId = req.params.postId
-//     const {userId , undo=false}  = req.body
-
-//     try{
-//         // const liked = await Like.findOne({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
-        
-//         // if(liked){
-//         //     if(!undo) 
-//         //         return res.status(200).json({
-//         //             success : true,
-//         //             liked : true,
-//         //         })
-//         //     else {
-//         //         const result = await Like.findOneAndDelete({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
-//         //         if(result)    
-//         //             return res.status(200).json({
-//         //                 success : true,
-//         //                 liked : false,
-//         //             })
-//         //     }
-//         // }
-//         // else{
-//         //     const result = await Like.create({user: mongoose.Types.ObjectId(userId), post: mongoose.Types.ObjectId(postId)})
-//         //     if(result)  
-//         //         return res.status(200).json({
-//         //             success : true,
-//         //             liked : true,
-//         //         })
-//         // }
-//     }catch(error){
-//          return next(error)
-//     }
-// }
