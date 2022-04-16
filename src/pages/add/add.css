@@ -1,0 +1,91 @@
+.add .leftContainer{
+    padding: 0 !important;
+}
+
+.add .leftContainer .item{
+    border: 1px solid #D9D9DB;
+    width: 175px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    height: 50px;
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.updateForm{
+    width: 100%;
+}
+
+.updateForm .titleField{
+    /* width: calc(100% - 100px); */
+    flex: 1;
+}
+
+.updateForm .imgField{
+    /* width: 100px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 400;
+}
+/* .updateForm .titleField */
+
+.submitSection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submitSection .clear{
+    background: #EDEEF0;
+    color: black;
+    border: 1px solid #E0E0E0;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.submitSection .submit{
+    background: #2F6CE5;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.coverImg{
+    width: 100%;
+}
+
+.coverImg Img{
+    height: 200px;
+    object-position: center;
+    object-fit: cover;
+}
+
+.title{
+    font-size: 20px;
+    color: #7c7c7c;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+}
+
+/* .form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-select ~ label {
+    opacity: 1;
+    transform: scale(.85) translateY(-0.9rem) translateX(.15rem);
+    background: #fff;
+    border: 1px solid #e9ecef;
+    padding: 0 11px;
+    margin: 2px;
+    height: 25px;
+    border-radius: 5px;
+    color: #5e5f60;
+} */

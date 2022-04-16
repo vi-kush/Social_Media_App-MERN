@@ -1,6 +1,8 @@
 import './register.css'
 import {Modal, Button, InputGroup, FormControl, Form} from 'react-bootstrap'
-import {useState, useRef} from 'react'
+import {useState, useRef, useEffect} from 'react'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const Register = (props) => {
 
@@ -9,7 +11,18 @@ const Register = (props) => {
     const [firstName,setFirstName] = useState("");
     const [lastName,setLastName] = useState("");
     const [password,setPassword] = useState("");
+    const [conformPassword,setConformPassword] = useState("");
     const [email,setEmail] = useState("");
+
+    const passwordField = useRef(null);
+    
+    useEffect(() => {
+        // console.log(passwordField)
+        if(passwordField.current)
+            if(showPassword) passwordField.current.type="text"
+            else passwordField.current.type="password"
+
+    },[showPassword])
 
     return (
         <Modal
@@ -37,26 +50,32 @@ const Register = (props) => {
                     </div>
                 </div>
                 <div className="formSection">
-                    <Form className="form" action="">
+                    <Form className="form" name="registerPage" action="">
                         <div className="fieldContainer">
                             {
                                 !loginPage &&
                                 <InputGroup className="">
-                                    <FormControl className="input" placeHolder="First Name"  />
-                                    <FormControl className="input" placeHolder="Last Name" />
+                                    <FormControl value={firstName} onChange={e => setFirstName(e.target.value)} className="input" placeholder="First Name" required name="firstname" />
+                                    <FormControl value={lastName} onChange={e => setLastName(e.target.value)} className="input" placeholder="Last Name" required name="lastname" />
                                 </InputGroup>
                             }
                             <InputGroup className="">
-                                <FormControl className="input" placeholder="Username" type="email"/>
+                                <FormControl value={email} onChange={e => setEmail(e.target.value)} className="input" placeholder="Username" required name="username" type="email"/>
                             </InputGroup>
                             <InputGroup className="">
-                                <FormControl className="input" placeholder="Password" type="password"/>
+                                <FormControl value={password} onChange={e => setPassword(e.target.value)} ref={passwordField} className="input inputPassword" required name="password" placeholder="Password" type="password"/>
+                                <InputGroup.Text className="iconPassword">
+                                {
+                                    showPassword ? <VisibilityOffIcon sx={{fontSize: 20}} onClick={e=>setShowPassword(false)}/> : <VisibilityIcon sx={{fontSize: 20}} onClick={e=>setShowPassword(true)}/>
+                                }   
+                                </InputGroup.Text>
                             </InputGroup>
                             {
                                 !loginPage &&
                                 <InputGroup className="">
-                                    <FormControl className="input" placeholder="Confirm Password" type="password"/>
+                                    <FormControl value={conformPassword} onBlur={() => {(password === conformPassword) ? alert("same") : alert("not same")} } onChange={e => setConformPassword(e.target.value)} className="input" required name="conformPassword" placeholder="Confirm Password" type="password"/>
                                 </InputGroup>
+                                
                             }
                         </div>
                         <Button className="register_btn">{loginPage ? "Sign In" :"Create Account"}</Button>

@@ -76,6 +76,14 @@
     }
 }
 
+@media only screen and (max-width: 500px){
+    .modal-body .headTitle{
+        margin: 0 5px;
+        margin-bottom: 5px;
+    }
+    
+}
+
 .register_right{
     display: flex;
     flex-direction: column;
@@ -111,6 +119,19 @@
     height: 46px;
 }
 
+.input.inputPassword,.input.inputPassword:focus{
+    border-right: none;
+    user-select: none;
+}
+
+.iconPassword.input-group-text{
+    border: none;
+    background-color: #F7F8FA;
+    color: #8A8A8A;
+    border-right: 1px solid #D9D9DB;
+    border-top: 1px solid #D9D9DB;
+    border-radius: 0;
+}
 
 .input:focus{
     box-shadow: none;

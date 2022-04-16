@@ -1,0 +1,167 @@
+input{
+    appearance: textfield !important;
+}
+
+.add .leftContainer{
+    padding: 0 !important;
+}
+
+a{
+    text-decoration: none;
+    color: #292929;
+    
+}
+
+.add .leftContainer a{
+
+}
+
+.add .leftContainer .sideitem{
+    border: 1px solid #D9D9DB;
+    border-bottom: none;
+    width: 175px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    height: 50px;
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.add .leftContainer .sideitem.active{
+    
+    color: #2F6CE5;
+    border-left: 3px solid #2F6CE5;
+    font-weight: 600;
+}
+
+.add .leftContainer .sideitem.first{
+    border-bottom: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.add .leftContainer .sideitem.last{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom: 1px solid #D9D9DB;
+}
+
+
+.updateForm{
+    width: 100%;
+}
+
+.updateForm .titleField{
+    /* width: calc(100% - 100px); */
+    flex: 1;
+}
+
+.updateForm .imgField{
+    /* width: 100px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 400;
+}
+/* .updateForm .titleField */
+
+.submitSection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submitSection .clear{
+    background: #EDEEF0;
+    color: black;
+    border: 1px solid #E0E0E0;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.submitSection .submit{
+    background: #2F6CE5;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.Img{
+    width: 100%;
+    height: 300px;
+    /* overflow: hidden; */
+    position: relative;
+}
+
+@media only screen and (max-width: 950px){
+
+    .Img{
+        width: 100%;
+        height: 250px;
+    }   
+}
+
+@media only screen and (max-width: 850px){
+
+    .Img{
+        width: 100%;
+        height: 200px;
+    }   
+}
+
+.Img .coverImgLabel{
+    width: 100%;
+    height: 100%;
+}
+
+.Img Img.coverImg{
+    /* height: 200px; */
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+
+.Img Img.profileImg{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid #FFF;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    border-top-right-radius : 50%;
+    border-top-left-radius : 50%;
+    background: rgba(0,0,0,0.8);
+}
+
+.title{
+    font-size: 20px;
+    color: #7c7c7c;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+}
+
+/* .form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-select ~ label {
+    opacity: 1;
+    transform: scale(.85) translateY(-0.9rem) translateX(.15rem);
+    background: #fff;
+    border: 1px solid #e9ecef;
+    padding: 0 11px;
+    margin: 2px;
+    height: 25px;
+    border-radius: 5px;
+    color: #5e5f60;
+} */

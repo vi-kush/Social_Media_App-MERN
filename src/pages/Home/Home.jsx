@@ -1,7 +1,8 @@
-import Navbar from "../../components/Navbar/Navbar"
+// import Navbar from "../../components/Navbar/Navbar"
 import Post from '../../components/Post/Post'
 import "./home.css"
 import {Button, Container, Row, Col, ButtonGroup, Dropdown} from 'react-bootstrap'
+// import {ArrowDropDownIcon, GroupAddIcon, ModeEditIcon, LocationOnOutlinedIcon, ErrorOutlineOutlinedIcon } from '@mui/icons-material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
@@ -14,7 +15,7 @@ const Home= ()=>{
 
     return (
         <div className="home">
-            <Navbar/>
+            {/* <Navbar/> */}
             <div className="homeContainer">
                 <div className="banner">
                     <img src="images/background.png" alt="" />
