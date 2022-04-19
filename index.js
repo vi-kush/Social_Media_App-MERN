@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'build')));
-app.use(express.static(path.join(__dirname,'./public/')));
 
 app.use('/api/auth',require('./routes/auth'))
 app.use('/api/post',require('./routes/post'))

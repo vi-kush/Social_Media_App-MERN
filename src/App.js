@@ -23,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout/>}>
             <Route index element={<Home/>} />
+            <Route path=":register" element={< Home/>}/>
             <Route path="new" element={<Add />}/>
             <Route path="profile" >
               <Route index element={<Profile section="personalinfo"/>} />

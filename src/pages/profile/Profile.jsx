@@ -2,10 +2,12 @@
 import "./profile.css"
 import {Button, Container, Row, Col, Form, FloatingLabel} from 'react-bootstrap'
 import {useState} from 'react'
-import {useParams,Link} from 'react-router-dom'
+import {useParams, Link, Navigate} from 'react-router-dom'
+
 
 const Profile = ({section})=>{
  
+    const [loggedIn,setLoggedIn] = useState(localStorage.getItem('auth') ? true : false)
     const [coverImage,setCoverImage] = useState(null);
     const [profileImage,setProfileImage] = useState(null);
 
@@ -14,6 +16,8 @@ const Profile = ({section})=>{
         section = Section.toLowerCase();
         if(!["personalinfo","security"].includes(section)) section="personalinfo";
     }
+
+    if(!loggedIn) return (<Navigate to="/signup" replace={true}/>)
 
     return(
         <Container fluid className="add my-4">
@@ -37,8 +41,13 @@ const Profile = ({section})=>{
                             </div>
                         </Link>
                         <Link to="">
-                            <div className="sideitem last">
-                                Notification
+                            <div className="sideitem">
+                                Notification Setting
+                            </div>
+                        </Link>
+                        <Link to="">
+                            <div className="sideitem last" onClick={()=>{localStorage.removeItem('auth'); setLoggedIn(false); }}>
+                                Logout
                             </div>
                         </Link>
                     </div>

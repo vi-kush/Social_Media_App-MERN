@@ -10,7 +10,6 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import postData from '../../postData.js'
 
-
 const Home= ()=>{
 
     return (
@@ -53,16 +52,9 @@ const Home= ()=>{
                                     <Dropdown.Item >Job</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </ButtonGroup>
-                        
-                        {/* 
-                        <span className="d-none">All&nbsp;Posts(32) </span>
-                        <span className="d-none">Article</span>
-                        <span className="d-none">Event</span>
-                        <span className="d-none">Education</span>
-                        <span className="d-none">Job</span> */}
+                        </ButtonGroup>                        
                     </div>
-                    <div className="right d-none d-md-flex">
+                    <div className={`right d-none `+ (true ? "d-md-flex" : "")}>
                         <Button className="add btn"> 
                             Write a Post
                             <ArrowDropDownIcon />

@@ -17,11 +17,11 @@ const Post= ({postData})=>{
                     <Card.Img variant="top" src={`images/posts/${post.postCover}`} />
                 }
                 <Card.Body>
-                    <div className="title">
+                    <div className="posttitle">
                         {postCategories[post.postCategory]}
                     </div>
                     <div className="content">
-                        <h2 className="title">
+                        <h2 className="posttitle">
                             {post.postTitle}
                             
                             <Dropdown>

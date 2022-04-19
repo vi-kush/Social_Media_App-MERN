@@ -165,3 +165,12 @@
 .form button.social_media_btn img{
     padding: 0 10px;
 }
+
+.error{
+    padding: 2px 5px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ff0000db;
+}

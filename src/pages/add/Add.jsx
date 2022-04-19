@@ -3,10 +3,12 @@ import "./add.css"
 import {Button, InputGroup, Container, Row, Col, Form, FloatingLabel} from 'react-bootstrap'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Navigate} from 'react-router-dom'
 const Add = ()=>{
  
     const [image,setImage] = useState(null);
+    const [loggedIn] = useState(localStorage.getItem('auth') ? true : false)
+    if(!loggedIn) return (<Navigate to="/signup" replace={true}/>)
 
     return(
         <Container fluid className="add mt-4">
