@@ -16,22 +16,15 @@ const Add = ()=>{
     return(
         <Container fluid className="add mt-4">
             <Row className="" style={{gap:"10px"}}>
-                <Col sm="4" lg="3" className="d-none leftContainer flex-column d-sm-flex align-items-end ">
-                    <div className="title mt-2 mb-4 align-self-center">Create Post</div>
-                    <div className="sidemenu">
+                <Col xs="12" md="4" lg="3" className="leftContainer flex-column d-md-flex align-items-end ">
+                    <div className="title px-3 mt-2 mb-4 align-self-center">Create Post</div>
+                    <div className="sidemenu d-flex d-md-block">
                         <Link to=""><div className="sideitem first active">Create Post</div></Link>
                         <Link to=""><div className="sideitem last">View All Post</div></Link>
                     </div>
                 </Col>
-                {/* 
-                <Col sm="3" className="d-flex d-sm-none justify-content-between">
-                    menu
-                </Col>
-                */}
-                <Col sm="7" lg="8" className="d-flex rightContainer flex-column align-items-start">
-                    <div className="select_post_category">
-                        {/* <DropDown /> */}
-                    </div>
+                
+                <Col xs="12" md="7" lg="8" className="d-flex rightContainer flex-column align-items-start">
 
                     <div className="coverImg mb-3">
                         {image ?<img src={URL.createObjectURL(image)} alt="" width="100%" />:""}

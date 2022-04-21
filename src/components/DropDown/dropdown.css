@@ -26,6 +26,7 @@
 
 .dropdown .dropdown_btn .dropdown_text{
     max-width: 70px;
+    min-width: 80px;
     pointer-events: none;
     border: none;
     outline: none;
@@ -38,14 +39,15 @@
 .dropdown .dropdown_menu{
     position: absolute;
     top: 40px;
-    right: 0;
+    right: 5px;
     width: 100%;
     border-radius: 5px;
-    background-color: #fffffff2;
-    border: 1px solid rgb(255, 255, 255);
+    background-color: #f3f3f3ee;
+    border: 1px solid #e7e7e7;
     font-size: 15px;
     font-weight: 400;
     padding: 10px 0;
+    /* margin: 0px 5px; */
     z-index: 1;
     display: none;
     flex-direction: column;
