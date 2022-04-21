@@ -22,11 +22,12 @@
     border-radius: 5px;
     display: flex;
     align-items: center;
+    text-transform: capitalize;
 }
 
 .dropdown .dropdown_btn .dropdown_text{
-    max-width: 70px;
-    min-width: 80px;
+    max-width: 80px;
+    min-width: 70px;
     pointer-events: none;
     border: none;
     outline: none;
@@ -39,7 +40,7 @@
 .dropdown .dropdown_menu{
     position: absolute;
     top: 40px;
-    right: 5px;
+    right: 0px;
     width: 100%;
     border-radius: 5px;
     background-color: #f3f3f3ee;
@@ -68,3 +69,4 @@
 .dropdown .dropdown_menu.show{
     display: flex !important;
 }
+

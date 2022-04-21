@@ -5,10 +5,10 @@ import {useState, useRef} from 'react'
 
 const DropDown = (props) => {
 
-    const {navDropDown, linkOptions, options, title} = props 
+    const {navDropDown, linkOptions, options, optionObject, title, mxw} = props 
     
     const [showDropDownMenu, setShowDropDownMenu] = useState(false);
-    const [dropdownInput, setDropdownInput] = useState((options && options[0]) || "");
+    const [dropdownInput, setDropdownInput] = useState((options && options[0]) || (optionObject && optionObject.filter(v => v.uri === props.section)[0].title.toLowerCase()) || "");
     const dropdownRef = useRef();
 
     const handleClick = (e,update) => {
@@ -18,12 +18,12 @@ const DropDown = (props) => {
     }   
    
     return (
-        <div className="dropdown">
+        <div className={`dropdown ${props.className}`}>
             <button className="dropdown_btn" onClick={(e)=>handleClick(e,false)}>
                 {title}
                 {   
                     !navDropDown &&
-                    <input type="text" className="dropdown_text" readOnly value={dropdownInput}/>
+                    <input type="text" className="dropdown_text" readOnly value={dropdownInput} style={{maxWidth: `${mxw}px`}}/>
                 }
                 <ArrowDropDownIcon style={(showDropDownMenu ? {transform:"rotate(180deg) translateY(-2px)",transition: "transform 0.3s" } : {transition: "transform 0.3s"})}/>
             </button>
@@ -33,6 +33,15 @@ const DropDown = (props) => {
                }
                {
                     options && options.filter(val=>val !== dropdownInput).map((opt,idx) => (<div onClick={(e)=>handleClick(e,true)} className="item" key={idx} >{opt}</div>))
+               }
+               {
+                   optionObject && optionObject.filter(val=> val.title.toLowerCase() !== dropdownInput).map((obj,idx) => (
+                                                                                                                <Link to={`/profile/${obj.uri}`} key={idx} onClick={obj.onclick}>
+                                                                                                                    <div onClick={(e)=>handleClick(e,true)} className="item" >
+                                                                                                                        {obj.title}
+                                                                                                                    </div>
+                                                                                                                </Link>
+                                                                                                            ))
                }
             </div>
         </div>

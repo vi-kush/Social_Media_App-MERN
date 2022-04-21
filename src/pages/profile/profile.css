@@ -12,10 +12,6 @@ a{
     
 }
 
-.add .leftContainer a{
-
-}
-
 .add .leftContainer .sideitem{
     border: 1px solid #D9D9DB;
     border-bottom: none;
@@ -29,6 +25,7 @@ a{
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    text-transform: capitalize;
 }
 
 .add .leftContainer .sideitem.active{
@@ -165,3 +162,11 @@ a{
     border-radius: 5px;
     color: #5e5f60;
 } */
+
+.profile_setting_dropdown{
+    border: 1px solid gray;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 5px;
+}

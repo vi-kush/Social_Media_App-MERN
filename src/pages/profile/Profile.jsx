@@ -4,7 +4,7 @@ import {Button, Container, Row, Col, Form, FloatingLabel} from 'react-bootstrap'
 import {useState, useContext} from 'react'
 import {useParams, Link, Navigate} from 'react-router-dom'
 import { authContext } from '../../App'
-
+import DropDown from '../../components/DropDown/DropDown' 
 
 const Profile = ({section})=>{
     
@@ -13,9 +13,40 @@ const Profile = ({section})=>{
     const [coverImage,setCoverImage] = useState(null);
     const [profileImage,setProfileImage] = useState(null);
 
+    const navItems = [
+        //add uri in section array too
+        {
+            title: "Personal Info",
+            uri: "personalinfo",
+            classname: "sideitem first",
+        },
+        {
+            title: "Security",
+            uri: "security",
+            classname: "sideitem",
+        },
+        {
+            title: "All Posts",
+            uri: "",
+            classname: "sideitem",
+        },
+        {
+            title: "Notification Setting",
+            uri: "",
+            classname: "sideitem",
+        },
+        {
+            title: "Logout",
+            uri: "",
+            classname: "sideitem last",
+            onclick: ()=>{localStorage.removeItem('auth'); setLoggedIn(false);},
+        }
+    ]
+
     const { Section } = useParams();
     if(Section){
         section = Section.toLowerCase();
+        //section name should be same as uri
         if(!["personalinfo","security"].includes(section)) section="personalinfo";
     }
 
@@ -24,45 +55,29 @@ const Profile = ({section})=>{
     return(
         <Container fluid className="add my-4">
             <Row className="" style={{gap:"10px"}}>
-                <Col sm="4" lg="3" className="d-none leftContainer flex-column d-sm-flex align-items-end ">
+                <Col md="4" lg="3" className="d-none leftContainer flex-column d-md-flex align-items-end ">
                     <div className="title mt-2 mb-4 align-self-center">Update Profile</div>
                     <div className="sidemenu">
-                        <Link to="/profile/personalinfo">
-                            <div className={"sideitem first " + (section === "personalinfo" ? "active" : "")}>
-                                Personal Info
-                            </div>
-                        </Link>
-                        <Link to="/profile/security">
-                            <div className={"sideitem " + (section === "security" ? "active" : "")}>
-                                Security
-                            </div>
-                        </Link>
-                        <Link to="">
-                            <div className="sideitem">
-                                View all Posts
-                            </div>
-                        </Link>
-                        <Link to="">
-                            <div className="sideitem">
-                                Notification Setting
-                            </div>
-                        </Link>
-                        <Link to="">
-                            <div className="sideitem last" onClick={()=>{localStorage.removeItem('auth'); setLoggedIn(false); }}>
-                                Logout
-                            </div>
-                        </Link>
+                        {   
+                            navItems.map(({uri,classname,onclick,title},idx)=>(
+                                <Link key={idx} to={`/profile/${uri}`}>
+                                    <div className={`${classname} ${section === uri ? " active" : ""}`} onClick={onclick}>
+                                    {title}
+                                    </div>
+                                </Link>
+                            ))
+                        }
                     </div>
                 </Col>
-                {/* 
-                <Col sm="3" className="d-flex d-sm-none justify-content-between">
-                    menu
+                
+                <Col md="4" lg="8" className="d-flex w-10 d-md-none justify-content-end">
+                    <DropDown mxw={160} section={section} optionObject={navItems} className="profile_setting_dropdown"/>
                 </Col>
-                */}
-                <Col sm="7" lg="8" className="d-flex rightContainer flex-column align-items-start">
+               
+                <Col md="7" lg="8" className="d-flex rightContainer flex-column align-items-start">
                     {   
                         (section === "personalinfo") &&
-                        <div className="Img mb-3">
+                        <div className="Img my-3">
                             <label className="coverImgLabel" htmlFor="CoverImage">
                                 <img src={coverImage ? URL.createObjectURL(coverImage) : "/images/uploads/users/noUserCoverImage.png"} alt="" className="coverImg" />
                             </label>
@@ -150,7 +165,7 @@ const Profile = ({section})=>{
                     }
                     {
                         (section === "security") &&
-                        <Form className="updateForm">
+                        <Form className="updateForm my-3">
                             <Form.Group >
                                 <Row className="mb-3" >
                                     <Col>
