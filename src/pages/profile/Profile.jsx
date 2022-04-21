@@ -58,9 +58,7 @@ const Profile = ({section})=>{
                         {   
                             navItems.map(({uri,classname,onclick,title},idx)=>(
                                 <Link key={idx} to={`/profile/${uri}`}>
-                                    <div className={`sideitem ${classname?classname:""} ${section === uri ? " active" : ""}`} onClick={onclick}>
-                                    {title}
-                                    </div>
+                                    <div className={`sideitem ${classname?classname:""} ${section===uri?"active":""}`} onClick={onclick}>{title}</div>
                                 </Link>
                             ))
                         }
