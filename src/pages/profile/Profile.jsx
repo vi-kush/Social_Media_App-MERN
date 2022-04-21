@@ -18,27 +18,24 @@ const Profile = ({section})=>{
         {
             title: "Personal Info",
             uri: "personalinfo",
-            classname: "sideitem first",
+            classname: "first",
         },
         {
             title: "Security",
             uri: "security",
-            classname: "sideitem",
         },
         {
             title: "All Posts",
             uri: "",
-            classname: "sideitem",
         },
         {
             title: "Notification Setting",
             uri: "",
-            classname: "sideitem",
         },
         {
             title: "Logout",
             uri: "",
-            classname: "sideitem last",
+            classname: "last",
             onclick: ()=>{localStorage.removeItem('auth'); setLoggedIn(false);},
         }
     ]
@@ -61,7 +58,7 @@ const Profile = ({section})=>{
                         {   
                             navItems.map(({uri,classname,onclick,title},idx)=>(
                                 <Link key={idx} to={`/profile/${uri}`}>
-                                    <div className={`${classname} ${section === uri ? " active" : ""}`} onClick={onclick}>
+                                    <div className={`sideitem ${classname?classname:""} ${section === uri ? " active" : ""}`} onClick={onclick}>
                                     {title}
                                     </div>
                                 </Link>
