@@ -2,12 +2,15 @@
 import "./add.css"
 import {Button, InputGroup, Container, Row, Col, Form, FloatingLabel} from 'react-bootstrap'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {Link, Navigate} from 'react-router-dom'
+import { authContext } from '../../App'
+
 const Add = ()=>{
- 
+    
     const [image,setImage] = useState(null);
-    const [loggedIn] = useState(localStorage.getItem('auth') ? true : false)
+    const { loggedIn } = useContext(authContext)
+    // const [loggedIn] = useState(localStorage.getItem('auth') ? true : false)
     if(!loggedIn) return (<Navigate to="/signup" replace={true}/>)
 
     return(
@@ -26,6 +29,10 @@ const Add = ()=>{
                 </Col>
                 */}
                 <Col sm="7" lg="8" className="d-flex rightContainer flex-column align-items-start">
+                    <div className="select_post_category">
+                        {/* <DropDown /> */}
+                    </div>
+
                     <div className="coverImg mb-3">
                         {image ?<img src={URL.createObjectURL(image)} alt="" width="100%" />:""}
                     </div>

@@ -5,6 +5,9 @@ import Add from './pages/add/Add'
 import Profile from './pages/profile/Profile'
 import {BrowserRouter, Routes, Route, Outlet} from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
+import { createContext, useState} from 'react';
+
+const authContext = createContext(null);
 
 const Layout = () => (
   <div className="layout">
@@ -16,25 +19,32 @@ const Layout = () => (
 )
 
 function App() {  
-
+  
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('auth') ? true : false)
+  
   return (
-    <BrowserRouter>
-      <div className="app">
-        <Routes>
-          <Route path="/" element={<Layout/>}>
-            <Route index element={<Home/>} />
-            <Route path=":register" element={< Home/>}/>
-            <Route path="new" element={<Add />}/>
-            <Route path="profile" >
-              <Route index element={<Profile section="personalinfo"/>} />
-              <Route path=":Section" element={<Profile/>} />
+    <authContext.Provider value={{loggedIn, setLoggedIn}} >
+      
+      <BrowserRouter>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<Layout/>}>
+              <Route index element={<Home/>} />
+              <Route path=":register" element={< Home/>}/>
+              <Route path="create" element={<Add />}/>
+              <Route path="profile" >
+                <Route index element={<Profile section="personalinfo"/>} />
+                <Route path=":Section" element={<Profile/>} />
+              </Route>
             </Route>
-          </Route>
-          <Route path="*" element={<div className="notFound" style={{width:"100%",textAlign:"center"}}><h1>No Routes Found</h1></div>}/>
-        </Routes>
-      </div>
-    </BrowserRouter>
+            <Route path="*" element={<div className="notFound" style={{width:"100%",textAlign:"center"}}><h1>No Routes Found</h1></div>}/>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    
+    </authContext.Provider>
   );
 }
 
 export default App;
+export { authContext };

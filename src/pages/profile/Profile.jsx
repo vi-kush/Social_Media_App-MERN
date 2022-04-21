@@ -1,13 +1,15 @@
 // import Navbar from '../../components/Navbar/Navbar'
 import "./profile.css"
 import {Button, Container, Row, Col, Form, FloatingLabel} from 'react-bootstrap'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {useParams, Link, Navigate} from 'react-router-dom'
+import { authContext } from '../../App'
 
 
 const Profile = ({section})=>{
- 
-    const [loggedIn,setLoggedIn] = useState(localStorage.getItem('auth') ? true : false)
+    
+    // const [loggedIn,setLoggedIn] = useState(localStorage.getItem('auth') ? true : false)
+    const { loggedIn, setLoggedIn} = useContext(authContext)
     const [coverImage,setCoverImage] = useState(null);
     const [profileImage,setProfileImage] = useState(null);
 

@@ -1,16 +1,20 @@
 // import Navbar from "../../components/Navbar/Navbar"
 import Post from '../../components/Post/Post'
+import DropDown from '../../components/DropDown/DropDown'
 import "./home.css"
-import {Button, Container, Row, Col, ButtonGroup, Dropdown} from 'react-bootstrap'
-// import {ArrowDropDownIcon, GroupAddIcon, ModeEditIcon, LocationOnOutlinedIcon, ErrorOutlineOutlinedIcon } from '@mui/icons-material';
+import {Button, Container, Row, Col} from 'react-bootstrap'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';    
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import postData from '../../postData.js'
-
+import { authContext } from '../../App'
+import { useContext } from 'react'
+ 
 const Home= ()=>{
+
+    const { loggedIn } = useContext(authContext)
 
     return (
         <div className="home">
@@ -34,27 +38,10 @@ const Home= ()=>{
                         <span>Job</span>
                     </div>
                     <div className="left d-flex w-100 d-md-none justify-content-between align-items-center">
-                        <span> Posts(32) </span>
-                        <ButtonGroup aria-label="Basic example">
-                            <Button className="postCategory btn"> 
-                                Filter 
-                                {/* <ArrowDropDownIcon /> */}
-                            </Button>
-                            <Dropdown>
-                                <Dropdown.Toggle className="d-flex justify-content-between align-items-center postCategory btn" id="dropdown-basic">
-                                All&nbsp;
-                                </Dropdown.Toggle>
-
-                                <Dropdown.Menu>
-                                    <Dropdown.Item >Article</Dropdown.Item>
-                                    <Dropdown.Item >Event</Dropdown.Item>
-                                    <Dropdown.Item >Education</Dropdown.Item>
-                                    <Dropdown.Item >Job</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </ButtonGroup>                        
+                    <span> Posts(32) </span>
+                    <DropDown title="Filter :" options={["all","article","meetup","event","job"]}/>                   
                     </div>
-                    <div className={`right d-none `+ (true ? "d-md-flex" : "")}>
+                    <div className={`right d-none `+ (loggedIn ? "d-md-flex" : "")}>
                         <Button className="add btn"> 
                             Write a Post
                             <ArrowDropDownIcon />

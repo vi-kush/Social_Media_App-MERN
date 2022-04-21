@@ -11,7 +11,7 @@ exports.signup = async(req,res,next) => {
             firstName, lastName, username, email, password
         });
         return res.status(201).json({
-            success: true, token : user.getJWT() 
+            success: true, token : user.getJWT(), user: {_id: user._id, firstName, lastName, email}
         });
 
     }catch(error){
@@ -39,7 +39,7 @@ exports.login = async(req,res,next) => {
 
         // const profile = user.profile;
         return res.status(200).json({
-            status: true, token : user.getJWT() 
+            status: true, token : user.getJWT(),  user: {_id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email}
         });
 
     }catch(error){

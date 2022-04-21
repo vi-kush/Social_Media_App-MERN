@@ -174,3 +174,25 @@
     letter-spacing: 1px;
     color: #ff0000db;
 }
+
+.dropdown-toggle.nav-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link{
+    color: inherit;
+}
+
+.dropdown-menu{
+    display: flex !important;
+    padding: 5px 10px;
+    flex-direction: column;    
+}
+
+.dropdown-menu a{
+    margin: 5px 10px;
+    letter-spacing: 1px;
+    color: #3f3f3f;
+}
