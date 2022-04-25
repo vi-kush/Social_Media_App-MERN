@@ -1,11 +1,17 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home/Home'
-import Add from './pages/add/Add'
-import Profile from './pages/profile/Profile'
+// import Add from './pages/add/Add'
+// import Profile from './pages/profile/Profile'
 import {BrowserRouter, Routes, Route, Outlet} from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
-import { createContext, useState} from 'react';
+import { createContext, lazy, useState, Suspense } from 'react';
+
+import Loader from './components/Loader/Loader'
+const AddLoader = lazy(()=>import('./pages/add/Add'))
+const Add = (props)=> (<Suspense fallback={<Loader/>}> <AddLoader {...props}/> </Suspense>)
+const ProfileLoader = lazy(()=>import('./pages/profile/Profile'))
+const Profile = (props)=> (<Suspense fallback={<Loader/>}> <ProfileLoader {...props}/> </Suspense>)
 
 const authContext = createContext(null);
 
