@@ -1,16 +1,20 @@
 // import Navbar from '../../components/Navbar/Navbar'
 import "./add.css"
+import DropDown from './../../components/DropDown/DropDown'
 import {Button, InputGroup, Container, Row, Col, Form, FloatingLabel} from 'react-bootstrap'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import {Link, Navigate} from 'react-router-dom'
 import { authContext } from '../../App'
 
 const Add = ()=>{
     
-    const [image,setImage] = useState(null);
+    const [image,setImage] = useState(undefined);
+    const [jobCategory,setJobCategory] = useState("article");
     const { loggedIn } = useContext(authContext)
     // const [loggedIn] = useState(localStorage.getItem('auth') ? true : false)
+    
+
     if(!loggedIn) return (<Navigate to="/signup" replace={true}/>)
 
     return(
@@ -26,18 +30,31 @@ const Add = ()=>{
                 
                 <Col xs="12" md="7" lg="8" className="d-flex rightContainer flex-column align-items-start">
 
-                    <div className="coverImg mb-3">
-                        {image ?<img src={URL.createObjectURL(image)} alt="" width="100%" />:""}
+                    <div className="job_category mt-1 mb-3">
+                        <DropDown 
+                        title="Category :" 
+                        mxw={200} 
+                        options={["article","education","meetup","job"]}
+                        btnStyle={{border:"1px solid rgba(0,0,0,0.2)",borderRadius:"5px",padding:"10px",background:"rgba(0,0,0,0.025)"}}
+                        inputStyle={{paddingLeft:"20px"}}
+                        change={setJobCategory}
+                        />
                     </div>
-                    <Form className="updateForm">
+                    {jobCategory !== "job" && image ?
+                        <div className="coverImg mb-3">
+                            <img src={URL.createObjectURL(image)} alt="" width="100%" />
+                        </div>: "" 
+                    }
+                    <Form className="updateForm" name="createPost">
                         <Row className="mb-3" >
+                            <input type="text" value={jobCategory} name="jobCategory" readOnly style={{display:"none"}}/>
                             <InputGroup >
                                 <FloatingLabel className="titleField" controlId="floatingInput" label="Title" >
                                     <Form.Control type="Text" placeholder="Title" />
                                 </FloatingLabel>
                                 <InputGroup.Text className="imgField">
                                     <label htmlFor="postCover">Cover <UploadFileIcon/> </label>
-                                    <input type="file" onChange={(e)=>setImage(e.target.files[0])} id="postCover" style={{display:"none"}} />
+                                    <input type="file" onChange={(e)=>setImage(e.target.files[0])} id="postCover" name="postCover" style={{display:"none"}} />
                                 </InputGroup.Text>
                             </InputGroup>
                         </Row>

@@ -12,18 +12,23 @@ const DropDown = (props) => {
     const dropdownRef = useRef();
 
     const handleClick = (e,update) => {
+
         setShowDropDownMenu(!showDropDownMenu);
-        update && setDropdownInput(e.currentTarget.innerText.toLowerCase());
-        // console.log(e.currentTarget);
+        if(update) {
+
+            let val=e.currentTarget.innerText.toLowerCase()
+            props.change && props.change(val)
+            setDropdownInput(val)
+        } 
     }   
-   
+
     return (
-        <div className={`dropdown ${props.className}`}>
-            <button className="dropdown_btn" onClick={(e)=>handleClick(e,false)}>
+        <div className={`dropdown ${props.className ? props.className : ""}`} style={{...props.style}}>
+            <button className="dropdown_btn" onClick={(e)=>handleClick(e,false)} style={{...props.btnStyle}}>
                 {title}
                 {   
                     !navDropDown &&
-                    <input type="text" className="dropdown_text" readOnly value={dropdownInput} style={{maxWidth: `${mxw}px`}}/>
+                    <input type="text" className="dropdown_text" readOnly value={dropdownInput} style={{maxWidth: `${mxw}px`, ...props.inputStyle}}/>
                 }
                 <ArrowDropDownIcon style={(showDropDownMenu ? {transform:"rotate(180deg) translateY(-2px)",transition: "transform 0.3s" } : {transition: "transform 0.3s"})}/>
             </button>
